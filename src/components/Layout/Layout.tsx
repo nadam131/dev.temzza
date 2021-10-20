@@ -1,12 +1,22 @@
-import { Container } from "@chakra-ui/react";
+import { Container, Flex } from "@chakra-ui/react";
 import React from "react";
 
-interface Layout {
+const styles = {
+  wrapper: {
+    minH: "100vh",
+  },
+};
+
+interface ILayout {
   children: any;
 }
 
-const Layout = ({ children }: Layout) => {
-  return <Container maxW="container.xl">{children}</Container>;
+const Layout: React.FC = ({ children }: ILayout) => {
+  return (
+    <Container maxW='container.xl'>
+      <Flex {...styles.wrapper}>{children}</Flex>
+    </Container>
+  );
 };
 
 export default Layout;
