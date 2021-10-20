@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'DIN Next CYR';
+    src: url('DINNextCYR-Regular.eot');
+    src: url('DINNextCYR-Regular.eot?#iefix') format('embedded-opentype'),
+        url('DINNextCYR-Regular.woff2') format('woff2'),
+        url('DINNextCYR-Regular.woff') format('woff'),
+        url('DINNextCYR-Regular.ttf') format('truetype'),
+        url('DINNextCYR-Regular.svg#DINNextCYR-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
