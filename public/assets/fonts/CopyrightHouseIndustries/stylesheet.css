@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'Copyright House Industries';
+    src: url('CopyrightHouseIndustries.eot');
+    src: url('CopyrightHouseIndustries.eot?#iefix') format('embedded-opentype'),
+        url('CopyrightHouseIndustries.woff2') format('woff2'),
+        url('CopyrightHouseIndustries.woff') format('woff'),
+        url('CopyrightHouseIndustries.ttf') format('truetype'),
+        url('CopyrightHouseIndustries.svg#CopyrightHouseIndustries-NotLicensedforDesktopUse') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+

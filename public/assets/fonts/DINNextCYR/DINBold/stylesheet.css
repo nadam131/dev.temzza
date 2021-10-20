@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'DIN Next CYR';
+    src: url('DINNextCYR-Bold.eot');
+    src: url('DINNextCYR-Bold.eot?#iefix') format('embedded-opentype'),
+        url('DINNextCYR-Bold.woff2') format('woff2'),
+        url('DINNextCYR-Bold.woff') format('woff'),
+        url('DINNextCYR-Bold.ttf') format('truetype'),
+        url('DINNextCYR-Bold.svg#DINNextCYR-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+

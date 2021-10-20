@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'GTA Russian';
+    src: url('GTARussian-Regular.eot');
+    src: url('GTARussian-Regular.eot?#iefix') format('embedded-opentype'),
+        url('GTARussian-Regular.woff2') format('woff2'),
+        url('GTARussian-Regular.woff') format('woff'),
+        url('GTARussian-Regular.ttf') format('truetype'),
+        url('GTARussian-Regular.svg#GTARussian-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
