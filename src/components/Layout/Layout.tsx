@@ -1,11 +1,11 @@
 import { Container } from "@chakra-ui/react";
-import React from "react";
+import React, { Fragment } from "react";
 
-interface ILayout {
+interface Layout {
   children: any;
 }
 
-const Layout = ({ children }: ILayout) => {
+const Layout = ({ children }: Layout) => {
   return <Container maxW="container.xl">{children}</Container>;
 };
 
