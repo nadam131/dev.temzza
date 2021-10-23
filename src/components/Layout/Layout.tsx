@@ -1,20 +1,16 @@
 import { Container, Flex } from "@chakra-ui/react";
 import React from "react";
-
-const styles = {
-  wrapper: {
-    minH: "100vh",
-  },
-};
+import Grid from "../Grid/Grid";
+import Sidebar from "../Sidebar/Sidebar";
 
 interface ILayout {
   children: any;
 }
 
-const Layout: React.FC = ({ children }: ILayout) => {
+const Layout = ({ children }: ILayout) => {
   return (
     <Container maxW='container.xl'>
-      <Flex {...styles.wrapper}>{children}</Flex>
+      <Grid aside={<Sidebar />}>{children}</Grid>
     </Container>
   );
 };
