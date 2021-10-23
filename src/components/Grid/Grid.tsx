@@ -21,14 +21,12 @@ const styles = {
   },
 };
 
-//
-
 interface IGrid {
   children: any;
   aside: any;
 }
 
-const Grid: React.FC = ({ children, aside }: IGrid) => {
+const Grid = ({ children, aside }: IGrid) => {
   return (
     <CGrid {...styles.grid}>
       <GridItem {...styles.aside}>{aside}</GridItem>
