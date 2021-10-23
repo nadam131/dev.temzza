@@ -2,9 +2,9 @@ import { Box, VStack, StackDivider } from "@chakra-ui/react";
 import React from "react";
 import Link from "next/link";
 
-const data = [
-  { id: 1, title: "Матчи", link: "matches" },
-  { id: 1, title: "Игроки", link: "players" },
+const NAV_ITEMS = [
+  { id: 1, title: "Матчи", link: "/matches" },
+  { id: 2, title: "Игроки", link: "/players" },
 ];
 
 const Sidebar = () => {
@@ -15,8 +15,8 @@ const Sidebar = () => {
       align='stretch'
       width='100%'
     >
-      {data.map((item) => (
-        <Link key={item.id} href={`/content/${item.link}`}>
+      {NAV_ITEMS.map((item) => (
+        <Link key={item.id} href={item.link}>
           <a>
             <Box>{item.title}</Box>
           </a>
