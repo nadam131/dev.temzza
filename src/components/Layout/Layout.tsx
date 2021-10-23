@@ -1,4 +1,4 @@
-import { Container, Flex } from "@chakra-ui/react";
+import { Container } from "@chakra-ui/react";
 import React from "react";
 import Grid from "../Grid/Grid";
 import Sidebar from "../Sidebar/Sidebar";
