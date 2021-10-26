@@ -4,7 +4,7 @@ import useSWR from "swr";
 import Matches from "../composite/Matches/Matches";
 import Players from "../composite/Players/Players";
 
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
+const fetcher = (url: any) => fetch(url).then((res) => res.json());
 
 const PageType = () => {
   const {
