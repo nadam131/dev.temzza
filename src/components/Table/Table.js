@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Table as ChakraTable,
   Thead,
@@ -9,7 +9,19 @@ import {
   TableCaption,
 } from "@chakra-ui/react";
 
+import useClipboard from "react-use-clipboard";
+
 const Table = ({ props, type }) => {
+  const [activeIndex, setActiveIndex] = useState();
+  const [isCopied, setCopied] = useClipboard(activeIndex);
+
+  console.log(activeIndex);
+
+  const handleClick = (i) => {
+    setActiveIndex(i.awayTeam.name);
+    setCopied();
+  };
+
   return (
     <ChakraTable variant='striped' colorScheme='teal'>
       <TableCaption placement='top'>{props.caption}</TableCaption>
@@ -24,7 +36,7 @@ const Table = ({ props, type }) => {
         <Tbody>
           {props.data &&
             props.data.map((item) => (
-              <Tr key={item.id}>
+              <Tr onClick={() => handleClick(item)} key={item.id}>
                 <Td>
                   {item.homeTeam.name} - {item.awayTeam.name}
                 </Td>
