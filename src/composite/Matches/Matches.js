@@ -19,6 +19,19 @@ const Matches = ({ lastMatches, nextMatches, type }) => {
     ],
     data: nextMatches.data,
   };
+
+  // Чтобы таблица была не зависима от типа, надо передавать что-то подобное
+  // const rows = ["Home", "Away", "Score"];
+  // const columns = [
+  //   ["Arsenal", "Manchester"],
+  //   ["Aston Villa", "Liverpool"],
+  //   ["3-1", "0-5"],
+  // ];
+  //
+  // Для этого нужно будет сначала такие массивы подготовить из lastMatches.data и nextMatches.data
+  //
+  // Потом в таблице составляешь из них Колонки и ряды.
+
   return (
     <div>
       <Table props={lastMatchesProps} type={type} />
