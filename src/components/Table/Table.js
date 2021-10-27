@@ -16,6 +16,7 @@ const Table = ({ props, type }) => {
   const [isCopied, setCopied] = useClipboard(activeIndex);
 
   console.log(activeIndex);
+  console.log(isCopied);
 
   const handleClick = (i) => {
     setActiveIndex(i.awayTeam.name);
