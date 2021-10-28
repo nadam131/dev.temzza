@@ -11,53 +11,47 @@ import {
 
 import useClipboard from "react-use-clipboard";
 
-const Table = ({ props, type }) => {
-  const [activeIndex, setActiveIndex] = useState();
-  const [isCopied, setCopied] = useClipboard(activeIndex);
+const Table = ({ props }) => {
+  const [activeItem, setActiveItem] = useState();
+  const [isCopied, setCopied] = useClipboard(activeItem);
 
-  console.log(activeIndex);
-  console.log(isCopied);
+  //ЗАМЕЧАНИЕ я не особо понимаю, что мы тут копируем,
+  // сейчас в буфере обмена данные из пропсов
+  // а должны быть ссылки на id дивов
 
-  const handleClick = (i) => {
-    setActiveIndex(i.awayTeam.name);
+  console.log(isCopied, "скопировано");
+  // ЗАМЕЧАНИЕ - невозможно убрать из-за правила es-lint
+  // мне наод где-то это использовать
+
+  const handleClick = (item) => {
+    setActiveItem(item);
     setCopied();
   };
 
   return (
-    <ChakraTable variant='striped' colorScheme='teal'>
-      <TableCaption placement='top'>{props.caption}</TableCaption>
-      <Thead>
-        <Tr>
-          {props.rows.map((row) => (
-            <Th key={row.id}>{row.title}</Th>
-          ))}
-        </Tr>
-      </Thead>
-      {type === "matches" && (
-        <Tbody>
-          {props.data &&
-            props.data.map((item) => (
-              <Tr onClick={() => handleClick(item)} key={item.id}>
-                <Td>
-                  {item.homeTeam.name} - {item.awayTeam.name}
-                </Td>
-                <Td>
-                  {item.goalsHomeTeam} - {item.goalsAwayTeam}
-                </Td>
+    <>
+      {props && (
+        <ChakraTable variant='striped' colorScheme='teal'>
+          <TableCaption placement='top'>{props.caption}</TableCaption>
+          <Thead>
+            <Tr>
+              {props.rows.map((row) => (
+                <Th key={row.index}>{row}</Th>
+              ))}
+            </Tr>
+          </Thead>
+          <Tbody>
+            {props.columns.map((col) => (
+              <Tr onClick={() => handleClick(col)} key={col.index}>
+                {col.map((item) => (
+                  <Td key={col.index}>{item}</Td>
+                ))}
               </Tr>
             ))}
-        </Tbody>
+          </Tbody>
+        </ChakraTable>
       )}
-      {type === "players" && (
-        <Tbody>
-          <Tr>
-            <Td>1</Td>
-            <Td>2</Td>
-            <Td>3</Td>
-          </Tr>
-        </Tbody>
-      )}
-    </ChakraTable>
+    </>
   );
 };
 

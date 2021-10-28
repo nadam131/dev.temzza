@@ -1,43 +1,55 @@
 import React from "react";
 import Table from "../../components/Table/Table";
+import { fetcher } from "../../assets/api";
+import useSWR from "swr";
 
-const Matches = ({ lastMatches, nextMatches, type }) => {
+const Matches = () => {
+  const lastMatches = useSWR(
+    "https://eplg-nest-nadam131.vercel.app/fixtures/last",
+    fetcher
+  );
+
+  const nextMatches = useSWR(
+    "https://eplg-nest-nadam131.vercel.app/fixtures/next",
+    fetcher
+  );
+
+  // ВОПРОС эта функция не работает сначала
+  // нужен промис?
+
+  const columnsSort = (arr) => {
+    console.log(arr, "lastMatches");
+    if (arr) {
+      return arr.data.map((item) => [
+        item.homeTeam.name,
+        item.awayTeam.name,
+        item.goalsHomeTeam !== null
+          ? `${item.goalsHomeTeam} - ${item.goalsAwayTeam}`
+          : "-",
+      ]);
+    }
+  };
+
   const lastMatchesProps = {
     caption: "Предыдущие матчи",
-    rows: [
-      { id: 1, title: "Матч" },
-      { id: 2, title: "Результат" },
-    ],
-    data: lastMatches.data,
+    rows: ["Дома", "На выезде", "Счет"],
+    // columns: columnsSort(lastMatches),
+    columns: [],
   };
 
   const nextMatchesProps = {
     caption: "Будущие матчи",
-    rows: [
-      { id: 1, title: "Матч" },
-      { id: 2, title: "Результат" },
-    ],
-    data: nextMatches.data,
+    rows: ["Дома", "На выезде", "Счет"],
+    // columns: columnsSort(nextMatches),
+    columns: [],
   };
 
-  // Чтобы таблица была не зависима от типа, надо передавать что-то подобное
-  // const rows = ["Home", "Away", "Score"];
-  // const columns = [
-  //   ["Arsenal", "Manchester"],
-  //   ["Aston Villa", "Liverpool"],
-  //   ["3-1", "0-5"],
-  // ];
-  //
-  // Для этого нужно будет сначала такие массивы подготовить из lastMatches.data и nextMatches.data
-  //
-  // Потом в таблице составляешь из них Колонки и ряды.
-
   return (
-    <div>
-      <Table props={lastMatchesProps} type={type} />
+    <>
+      <Table props={lastMatchesProps} />
       <br />
-      <Table props={nextMatchesProps} type={type} />
-    </div>
+      <Table props={nextMatchesProps} />
+    </>
   );
 };
 

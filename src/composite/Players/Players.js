@@ -1,17 +1,16 @@
 import React from "react";
 import Table from "../../components/Table/Table";
 
-const Players = ({ type }) => {
+const Players = () => {
   const playerTableProps = {
     caption: "Данные игрока",
-    rows: [
-      { id: 1, title: "Имя" },
-      { id: 2, title: "Выходы на поле" },
-      { id: 3, title: "Голы" },
+    rows: ["Имя", "Cтрана", "Передачи", "Голы"],
+    columns: [
+      ["Глебовский", "Польша", 1, 1],
+      ["Ник Бордеро", "Колумбия", 1, 1],
     ],
-    data: [{ homeTeam: 1, title: null }],
   };
-  return <Table props={playerTableProps} type={type} />;
+  return <Table props={playerTableProps} />;
 };
 
 export default Players;
