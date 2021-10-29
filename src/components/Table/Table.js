@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Table as ChakraTable,
   Thead,
@@ -9,30 +9,26 @@ import {
   TableCaption,
 } from "@chakra-ui/react";
 
-import useClipboard from "react-use-clipboard";
+import { useClipboard } from "@chakra-ui/react";
 
 const Table = ({ props }) => {
-  const [activeItem, setActiveItem] = useState();
-  const [isCopied, setCopied] = useClipboard(activeItem);
+  const [copiedValue, setCopiedValue] = useState("");
+  const { onCopy } = useClipboard(copiedValue);
 
-  //ЗАМЕЧАНИЕ я не особо понимаю, что мы тут копируем,
-  // сейчас в буфере обмена данные из пропсов
-  // а должны быть ссылки на id дивов
-
-  console.log(isCopied, "скопировано");
-  // ЗАМЕЧАНИЕ - невозможно убрать из-за правила es-lint
-  // мне наод где-то это использовать
+  useEffect(() => {
+    copiedValue && onCopy();
+  }, [copiedValue, onCopy]);
 
   const handleClick = (item) => {
-    setActiveItem(item);
-    setCopied();
+    setCopiedValue('<div id="temzza-match-card" data-props-id="asdasd"></div>');
+    onCopy();
   };
 
   return (
     <>
       {props && (
-        <ChakraTable variant='striped' colorScheme='teal'>
-          <TableCaption placement='top'>{props.caption}</TableCaption>
+        <ChakraTable variant="striped" colorScheme="teal">
+          <TableCaption placement="top">{props.caption}</TableCaption>
           <Thead>
             <Tr>
               {props.rows.map((row) => (
