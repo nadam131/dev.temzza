@@ -1,48 +1,65 @@
 import React from "react";
 import Table from "../../components/Table/Table";
 import { fetcher } from "../../assets/api";
+import { pick } from "lodash";
 import useSWR from "swr";
 
 const Matches = () => {
-  const lastMatches = useSWR(
+  const { data: lastMatches, error: lastMatchesError } = useSWR(
     "https://eplg-nest-nadam131.vercel.app/fixtures/last",
     fetcher
   );
 
-  const nextMatches = useSWR(
+  const { data: nextMatches, error: nextMatchesError } = useSWR(
     "https://eplg-nest-nadam131.vercel.app/fixtures/next",
     fetcher
   );
 
-  // ВОПРОС эта функция не работает сначала
-  // нужен промис?
+  if (lastMatchesError || nextMatchesError) return <div>failed to load</div>;
+  if (!lastMatches || !nextMatches) return <div>loading lastMatches...</div>;
 
-  const columnsSort = (arr) => {
-    console.log(arr, "lastMatches");
-    if (arr) {
-      return arr.data.map((item) => [
-        item.homeTeam.name,
-        item.awayTeam.name,
-        item.goalsHomeTeam !== null
-          ? `${item.goalsHomeTeam} - ${item.goalsAwayTeam}`
-          : "-",
-      ]);
-    }
+  const createRows = (rows, keys) => {
+    const columnsCount = keys.length;
+
+    return rows.map((row, i) => {
+      const data = pick(row, keys);
+      return data;
+    });
   };
 
+  console.log(lastMatches, "lastMatches");
+  console.log(nextMatches, "nextMatches");
+
+  // const lastMatchesProps = {
+  //   caption: "Предыдущие матчи",
+  //   columns: ["Дома", "На выезде", "Счет"],
+  //   rows: createRows(lastMatches, [
+  //     "homeTeam",
+  //     "awayTeam",
+  //     ["goalsHomeTeam", "goalsAwayTeam"],
+  //   ]),
+  // };
+
   const lastMatchesProps = {
-    caption: "Предыдущие матчи",
-    rows: ["Дома", "На выезде", "Счет"],
-    // columns: columnsSort(lastMatches),
-    columns: [],
+    caption: "Данные игрока",
+    rows: ["Имя", "Cтрана", "Передачи", "Голы"],
+    columns: [
+      ["Глебовский", "Польша", 1, 1],
+      ["Ник Бордеро", "Колумбия", 1, 1],
+    ],
   };
 
   const nextMatchesProps = {
-    caption: "Будущие матчи",
-    rows: ["Дома", "На выезде", "Счет"],
-    // columns: columnsSort(nextMatches),
-    columns: [],
+    caption: "Данные игрока",
+    rows: ["Имя", "Cтрана", "Передачи", "Голы"],
+    columns: [
+      ["Глебовский", "Польша", 1, 1],
+      ["Ник Бордеро", "Колумбия", 1, 1],
+    ],
   };
+
+  console.log(lastMatchesProps, "lastMatchesProps ROWS");
+  console.log(nextMatchesProps, "nextMatchesProps ROWS");
 
   return (
     <>
