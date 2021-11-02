@@ -1,11 +1,9 @@
 import React from "react";
 import { NextRouter, useRouter } from "next/router";
 import Matches from "../composite/Matches/Matches";
-import Players from "../composite/Players/Players";
 
 const PAGES_BY_TYPE: { [key: string]: any } = {
   matches: Matches,
-  players: Players,
 };
 
 const PageType = () => {
