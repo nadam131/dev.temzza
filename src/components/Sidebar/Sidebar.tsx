@@ -2,10 +2,7 @@ import { Box, VStack, StackDivider } from "@chakra-ui/react";
 import React from "react";
 import Link from "next/link";
 
-const data = [
-  { id: 1, title: "Матчи", link: "matches" },
-  { id: 1, title: "Игроки", link: "players" },
-];
+const data = [{ id: 1, title: "Матчи", link: "matches" }];
 
 const Sidebar = () => {
   return (
