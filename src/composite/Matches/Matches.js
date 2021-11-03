@@ -1,21 +1,24 @@
 import React from "react";
 import Table from "../../components/Table/Table";
-import { fetcher } from "../../assets/api";
 import { createRows } from "../../assets/func";
-import useSWR from "swr";
+import { useLastMatches, useNextMatches } from "../../assets/hooks";
 
 const Matches = () => {
-  const { data: lastMatches, error: lastMatchesError } = useSWR(
-    "https://eplg-nest-nadam131.vercel.app/fixtures/last",
-    fetcher
-  );
-  const { data: nextMatches, error: nextMatchesError } = useSWR(
-    "https://eplg-nest-nadam131.vercel.app/fixtures/next",
-    fetcher
-  );
+  const {
+    lastMatches,
+    isLoadingLastMatches,
+    isErrorLastMatches,
+  } = useLastMatches();
+  const {
+    nextMatches,
+    isLoadingNextMatches,
+    isErrorNextMatches,
+  } = useNextMatches();
 
-  if (lastMatchesError || nextMatchesError) return <div>failed to load</div>;
-  if (!lastMatches || !nextMatches) return <div>loading lastMatches...</div>;
+  if (isLoadingNextMatches || isLoadingLastMatches)
+    return <div>loading lastMatches...</div>;
+  if (isErrorNextMatches || isErrorLastMatches)
+    return <div>failed to load</div>;
 
   const lastMatchesProps = {
     caption: "Предыдущие матчи",
