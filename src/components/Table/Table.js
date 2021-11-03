@@ -20,27 +20,39 @@ const Table = ({ props }) => {
   }, [copiedValue, onCopy]);
 
   const handleClick = (item) => {
-    setCopiedValue(`<div id="temzza-match-card" data-props-id=${item.id}></div>`);
+    setCopiedValue(
+      `<div id="temzza-match-card" data-props-id=${item.id}></div>`
+    );
     onCopy();
+  };
+
+  const style = {
+    row: {
+      cursor: "pointer",
+    },
   };
 
   return (
     <>
       {props && (
-        <ChakraTable variant="striped" colorScheme="teal">
-          <TableCaption placement="top">{props.caption}</TableCaption>
+        <ChakraTable variant='striped' colorScheme='teal'>
+          <TableCaption placement='top'>{props.caption}</TableCaption>
           <Thead>
             <Tr>
-              {props.rows.map((row) => (
-                <Th key={row.index}>{row}</Th>
+              {props.columns.map((column) => (
+                <Th key={column.index}>{column}</Th>
               ))}
             </Tr>
           </Thead>
           <Tbody>
-            {props.columns.map((col) => (
-              <Tr onClick={() => handleClick(col)} key={col.index}>
-                {col.map((item) => (
-                  <Td key={col.index}>{item}</Td>
+            {props.rows.map((row) => (
+              <Tr
+                key={row.index}
+                onClick={() => handleClick(row[0])}
+                {...style.row}
+              >
+                {row[1].data.map((item) => (
+                  <Td key={item.index}>{item}</Td>
                 ))}
               </Tr>
             ))}
