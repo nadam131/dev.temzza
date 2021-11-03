@@ -36,7 +36,7 @@ const Matches = () => {
     data: nextMatches,
     caption: "Следующие матчи",
     columns: ["Дома", "На выезде"],
-    rows: createRows(nextMatches, ["id", "homeTeam.name", "awayTeam.name"]),
+    rows: createRows(nextMatches, ["homeTeam.name", "awayTeam.name"]),
   };
 
   return (
