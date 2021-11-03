@@ -21,10 +21,10 @@ const Matches = () => {
     return <div>failed to load</div>;
 
   const lastMatchesProps = {
+    data: lastMatches,
     caption: "Предыдущие матчи",
     columns: ["Дома", "На выезде", "Счет"],
     rows: createRows(lastMatches, [
-      "id",
       "homeTeam.name",
       "awayTeam.name",
       "goalsHomeTeam",
@@ -33,6 +33,7 @@ const Matches = () => {
   };
 
   const nextMatchesProps = {
+    data: nextMatches,
     caption: "Следующие матчи",
     columns: ["Дома", "На выезде"],
     rows: createRows(nextMatches, ["id", "homeTeam.name", "awayTeam.name"]),
@@ -40,9 +41,9 @@ const Matches = () => {
 
   return (
     <>
-      <Table props={lastMatchesProps} />
+      <Table {...lastMatchesProps} />
       <br />
-      <Table props={nextMatchesProps} />
+      <Table {...nextMatchesProps} />
     </>
   );
 };

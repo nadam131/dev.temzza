@@ -11,11 +11,12 @@ import {
 
 import { useClipboard } from "@chakra-ui/react";
 
-const Table = ({ props }) => {
+const Table = ({ data, caption, columns, rows }) => {
   const [copiedValue, setCopiedValue] = useState("");
   const { onCopy } = useClipboard(copiedValue);
 
   useEffect(() => {
+    console.log(copiedValue, "copiedValue");
     copiedValue && onCopy();
   }, [copiedValue, onCopy]);
 
@@ -34,31 +35,28 @@ const Table = ({ props }) => {
 
   return (
     <>
-      {props && (
-        <ChakraTable variant='striped' colorScheme='teal'>
-          <TableCaption placement='top'>{props.caption}</TableCaption>
-          <Thead>
-            <Tr>
-              {props.columns.map((column) => (
-                <Th key={column.index}>{column}</Th>
-              ))}
-            </Tr>
-          </Thead>
-          <Tbody>
-            {props.rows.map((row) => (
-              <Tr
-                key={row.index}
-                onClick={() => handleClick(row[0])}
-                {...style.row}
-              >
-                {row[1].data.map((item) => (
-                  <Td key={item.index}>{item}</Td>
+      <ChakraTable variant="striped" colorScheme="teal">
+        <TableCaption placement="top">{caption}</TableCaption>
+        <Thead>
+          <Tr>
+            {columns.map((column) => (
+              <Th key={column.index}>{column}</Th>
+            ))}
+          </Tr>
+        </Thead>
+        <Tbody>
+          {data.map((el, i) => {
+            const row = rows[i];
+            return (
+              <Tr key={el.id} onClick={() => handleClick(el.id)} {...style.row}>
+                {row.map((item, i) => (
+                  <Td key={i}>{item}</Td>
                 ))}
               </Tr>
-            ))}
-          </Tbody>
-        </ChakraTable>
-      )}
+            );
+          })}
+        </Tbody>
+      </ChakraTable>
     </>
   );
 };
