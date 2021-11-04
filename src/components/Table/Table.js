@@ -34,30 +34,28 @@ const Table = ({ data, caption, columns, rows }) => {
   };
 
   return (
-    <>
-      <ChakraTable variant="striped" colorScheme="teal">
-        <TableCaption placement="top">{caption}</TableCaption>
-        <Thead>
-          <Tr>
-            {columns.map((column) => (
-              <Th key={column.index}>{column}</Th>
-            ))}
-          </Tr>
-        </Thead>
-        <Tbody>
-          {data.map((el, i) => {
-            const row = rows[i];
-            return (
-              <Tr key={el.id} onClick={() => handleClick(el.id)} {...style.row}>
-                {row.map((item, i) => (
-                  <Td key={i}>{item}</Td>
-                ))}
-              </Tr>
-            );
-          })}
-        </Tbody>
-      </ChakraTable>
-    </>
+    <ChakraTable variant='striped' colorScheme='teal'>
+      <TableCaption placement='top'>{caption}</TableCaption>
+      <Thead>
+        <Tr>
+          {columns.map((column, index) => (
+            <Th key={index}>{column}</Th>
+          ))}
+        </Tr>
+      </Thead>
+      <Tbody>
+        {data.map((el, i) => {
+          const row = rows[i];
+          return (
+            <Tr key={el.id} onClick={() => handleClick(el.id)} {...style.row}>
+              {row.map((item, i) => (
+                <Td key={i}>{item}</Td>
+              ))}
+            </Tr>
+          );
+        })}
+      </Tbody>
+    </ChakraTable>
   );
 };
 

@@ -13,7 +13,7 @@ const Sidebar = () => {
       width='100%'
     >
       {data.map((item) => (
-        <Link key={item.id} href={`${item.link}`}>
+        <Link key={item.id} href={`/${item.link}`}>
           <a>
             <Box>{item.title}</Box>
           </a>
