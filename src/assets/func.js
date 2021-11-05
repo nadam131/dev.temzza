@@ -12,4 +12,9 @@ const createRows = (data, keys) => {
   });
 };
 
-export { createRows };
+const renderRows = (data, i) => {
+  const row = data[i];
+  return row;
+};
+
+export { createRows, renderRows };
