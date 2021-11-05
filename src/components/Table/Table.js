@@ -11,6 +11,12 @@ import {
 
 import { useClipboard } from "@chakra-ui/react";
 
+const style = {
+  row: {
+    cursor: "pointer",
+  },
+};
+
 const Table = ({ data, caption, columns, rows }) => {
   const [copiedValue, setCopiedValue] = useState("");
   const { onCopy } = useClipboard(copiedValue);
@@ -25,12 +31,6 @@ const Table = ({ data, caption, columns, rows }) => {
       `<div id="temzza-match-card" data-props-id=${item.id}></div>`
     );
     onCopy();
-  };
-
-  const style = {
-    row: {
-      cursor: "pointer",
-    },
   };
 
   return (
