@@ -11,6 +11,8 @@ import {
 
 import { useClipboard } from "@chakra-ui/react";
 
+import { renderRows } from "../../assets/func";
+
 const style = {
   row: {
     cursor: "pointer",
@@ -26,10 +28,8 @@ const Table = ({ data, caption, columns, rows }) => {
     copiedValue && onCopy();
   }, [copiedValue, onCopy]);
 
-  const handleClick = (item) => {
-    setCopiedValue(
-      `<div id="temzza-match-card" data-props-id=${item.id}></div>`
-    );
+  const handleClick = (id) => {
+    setCopiedValue(`<div id="temzza-match-card" data-props-id=${id}></div>`);
     onCopy();
   };
 
@@ -45,10 +45,9 @@ const Table = ({ data, caption, columns, rows }) => {
       </Thead>
       <Tbody>
         {data.map((el, i) => {
-          const row = rows[i];
           return (
             <Tr key={el.id} onClick={() => handleClick(el.id)} {...style.row}>
-              {row.map((item, i) => (
+              {renderRows(rows, i).map((item, i) => (
                 <Td key={i}>{item}</Td>
               ))}
             </Tr>
