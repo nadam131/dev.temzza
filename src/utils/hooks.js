@@ -1,5 +1,5 @@
 import useSWR from "swr";
-import { fetcher } from "./api";
+import { fetcher } from "../assets/api";
 
 const useLastMatches = () => {
   const { data, error } = useSWR(
