@@ -11,8 +11,6 @@ import {
 
 import { useClipboard } from "@chakra-ui/react";
 
-import { renderRows } from "../../assets/func";
-
 const style = {
   row: {
     cursor: "pointer",
@@ -33,9 +31,22 @@ const Table = ({ data, caption, columns, rows }) => {
     onCopy();
   };
 
+  const renderRows = () => {
+    return data.map((el, i) => {
+      const rowValues = rows[i];
+      return (
+        <Tr key={el.id} onClick={() => handleClick(el.id)} {...style.row}>
+          {rowValues.map((value, i) => {
+            return <Td key={i}>{value}</Td>;
+          })}
+        </Tr>
+      );
+    });
+  };
+
   return (
-    <ChakraTable variant='striped' colorScheme='teal'>
-      <TableCaption placement='top'>{caption}</TableCaption>
+    <ChakraTable variant="striped" colorScheme="teal">
+      <TableCaption placement="top">{caption}</TableCaption>
       <Thead>
         <Tr>
           {columns.map((column, index) => (
@@ -43,17 +54,7 @@ const Table = ({ data, caption, columns, rows }) => {
           ))}
         </Tr>
       </Thead>
-      <Tbody>
-        {data.map((el, i) => {
-          return (
-            <Tr key={el.id} onClick={() => handleClick(el.id)} {...style.row}>
-              {renderRows(rows, i).map((item, i) => (
-                <Td key={i}>{item}</Td>
-              ))}
-            </Tr>
-          );
-        })}
-      </Tbody>
+      <Tbody>{renderRows()}</Tbody>
     </ChakraTable>
   );
 };
