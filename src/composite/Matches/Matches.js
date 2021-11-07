@@ -1,6 +1,6 @@
 import React from "react";
 import Table from "../../components/Table/Table";
-import { createRows } from "../../assets/func";
+import { createRows } from "../../utils/func";
 import { useLastMatches, useNextMatches } from "../../utils/hooks";
 
 const Matches = () => {
