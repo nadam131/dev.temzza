@@ -27,7 +27,7 @@ const Table = ({ data, caption, columns, rows }) => {
   }, [copiedValue, onCopy]);
 
   const handleClick = (id) => {
-    setCopiedValue(`<div id="temzza-match-card" data-props-id=${id}></div>`);
+    setCopiedValue(`<div id="temzza-match-card" data-props-id="${id}"></div>`);
     onCopy();
   };
 
